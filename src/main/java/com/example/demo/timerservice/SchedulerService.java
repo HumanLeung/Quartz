@@ -1,7 +1,6 @@
 package com.example.demo.timerservice;
 
 import com.example.demo.info.TimerInfo;
-import com.example.demo.jobs.HelloWorldJob;
 import com.example.demo.util.TimerUtils;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
@@ -56,7 +55,7 @@ public class SchedulerService {
         }
     }
 
-    public List<TimerInfo> getAllRunningTimers() {
+    public List<Object> getAllRunningTimers() {
         try {
             return scheduler.getJobKeys(GroupMatcher.anyGroup())
                     .stream()
@@ -66,7 +65,7 @@ public class SchedulerService {
                             System.out.println(jobKey);
                             System.out.println(jobDetail);
                             System.out.println(jobDetail.getJobDataMap().get(jobKey.getName()));
-                            return (TimerInfo) jobDetail.getJobDataMap().get(jobKey.getName());
+                            return jobDetail.getJobDataMap().get(jobKey.getName());
                         } catch (final SchedulerException e) {
                             log.error(e.getMessage(), e);
                             return null;

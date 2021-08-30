@@ -21,7 +21,7 @@ public class PlayGroundController {
         service.runHelloWorldJob();
     }
     @GetMapping
-    public List<TimerInfo> getAllRunningTimers() {
+    public List<Object> getAllRunningTimers() {
         return service.getAllRunningTimers();
     }
 

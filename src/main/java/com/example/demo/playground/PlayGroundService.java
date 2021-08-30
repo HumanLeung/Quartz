@@ -16,7 +16,7 @@ public class PlayGroundService {
     }
 
     public void runHelloWorldJob() {
-        final TimerInfo info = new TimerInfo();
+        TimerInfo info = new TimerInfo();
         info.setTotalFireCount(5);
         info.setRemainingFireCount(info.getTotalFireCount());
         info.setRepeatIntervalMs(5000);
@@ -25,7 +25,7 @@ public class PlayGroundService {
 
         schedulerService.schedule(HelloWorldJob.class, info);
     }
-    public List<TimerInfo> getAllRunningTimers() {
+    public List<Object> getAllRunningTimers() {
         return schedulerService.getAllRunningTimers();
     }
     public TimerInfo getRunningTimer(final String timerId) {
