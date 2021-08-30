@@ -1,12 +1,9 @@
 package com.example.demo.info;
 
-import lombok.Data;
 
 import java.io.Serializable;
 
 public class TimerInfo implements Serializable {
-
-    private static final long serialVersionUID = 1234567L;
 
     private int totalFireCount;
     private int remainingFireCount;
@@ -14,10 +11,6 @@ public class TimerInfo implements Serializable {
     private long repeatIntervalMs;
     private long initialOffsetMs;
     private String callbackData;
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public int getTotalFireCount() {
         return totalFireCount;

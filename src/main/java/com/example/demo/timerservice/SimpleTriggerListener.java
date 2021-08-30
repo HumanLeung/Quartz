@@ -23,7 +23,8 @@ public class SimpleTriggerListener implements TriggerListener {
         final String timerId = trigger.getKey().getName();
 
         final JobDataMap jobDataMap = context.getJobDetail().getJobDataMap();
-        System.out.println((jobDataMap.get(timerId))+"id");
+        System.out.println((jobDataMap.get(timerId)).getClass().getClassLoader()+"id");
+
         TimerInfo info = (TimerInfo) jobDataMap.get(timerId);
 
         if (!info.isRunForever()) {

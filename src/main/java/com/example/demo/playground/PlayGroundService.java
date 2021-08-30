@@ -17,6 +17,7 @@ public class PlayGroundService {
 
     public void runHelloWorldJob() {
         TimerInfo info = new TimerInfo();
+        System.out.println(info.getClass().getClassLoader()+" playground");
         info.setTotalFireCount(5);
         info.setRemainingFireCount(info.getTotalFireCount());
         info.setRepeatIntervalMs(5000);

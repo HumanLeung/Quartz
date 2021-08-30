@@ -3,12 +3,13 @@ package com.example.demo.util;
 import com.example.demo.info.TimerInfo;
 import org.quartz.*;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class TimerUtils {
     private TimerUtils(){}
 
-    public static JobDetail buildJobDetail(final Class jobCLass, final TimerInfo info){
+    public static JobDetail buildJobDetail(final Class jobCLass, final Object info){
         final JobDataMap jobDataMap = new JobDataMap();
         jobDataMap.put(jobCLass.getSimpleName(),info);
 
@@ -18,20 +19,20 @@ public class TimerUtils {
                 .build();
     }
 
-    public static Trigger buildTrigger(final Class jobClass, final TimerInfo info) {
-        SimpleScheduleBuilder builder = SimpleScheduleBuilder.simpleSchedule().withIntervalInMilliseconds(info.getRepeatIntervalMs());
+    public static Trigger buildTrigger(final Class jobClass, final Object info) {
+        SimpleScheduleBuilder builder = SimpleScheduleBuilder.simpleSchedule().withIntervalInMilliseconds(((TimerInfo)info).getRepeatIntervalMs());
 
-        if (info.isRunForever()) {
+        if (((TimerInfo)info).isRunForever()) {
             builder = builder.repeatForever();
         } else {
-            builder = builder.withRepeatCount(info.getTotalFireCount() - 1);
+            builder = builder.withRepeatCount(((TimerInfo)info).getTotalFireCount() - 1);
         }
 
         return TriggerBuilder
                 .newTrigger()
                 .withIdentity(jobClass.getSimpleName())
                 .withSchedule(builder)
-                .startAt(new Date(System.currentTimeMillis() + info.getInitialOffsetMs()))
+                .startAt(new Date(System.currentTimeMillis() + ((TimerInfo)info).getInitialOffsetMs()))
                 .build();
     }
 }
