@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 @Data
 public class TimerInfo implements Serializable {
-    private String jobName;
     private int totalFireCount;
     private int remainingFireCount;
     private boolean runForever;
