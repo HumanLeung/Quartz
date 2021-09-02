@@ -7,6 +7,7 @@ import org.quartz.impl.matchers.GroupMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -106,6 +107,29 @@ public class SchedulerService {
         } catch (final SchedulerException e) {
             log.error(e.getMessage(), e);
             return null;
+        }
+    }
+    public void pauseJob(final String timerId){
+       try {
+           final JobDetail jobDetail = scheduler.getJobDetail(new JobKey(timerId));
+           if (jobDetail == null){
+               log.error("Failed to find timer with ID '{}'",timerId);
+           }else {
+               scheduler.pauseJob(new JobKey(timerId));
+           }
+       }catch (final SchedulerException ignored){
+       }
+    }
+
+    public void resumeJob(final String timerId){
+        try {
+            final JobDetail jobDetail = scheduler.getJobDetail(new JobKey(timerId));
+            if (jobDetail == null){
+                log.error("Failed to find timer with ID '{}'",timerId);
+            }else {
+                scheduler.resumeJob(new JobKey(timerId));
+            }
+        }catch (final SchedulerException ignored){
         }
     }
 

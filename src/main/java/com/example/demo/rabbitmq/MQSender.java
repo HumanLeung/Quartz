@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
-@Component
+//@Component
 public class MQSender {
     private static final Logger logger = LoggerFactory.getLogger(MQSender.class);
 

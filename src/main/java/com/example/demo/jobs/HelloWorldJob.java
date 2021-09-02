@@ -16,6 +16,5 @@ public class HelloWorldJob implements Job {
         TimerInfo info = (TimerInfo) jobDataMap.get(HelloWorldJob.class.getSimpleName());
         LOG.info("Remaining fire count is '{}'", info.getRemainingFireCount());
 
-
     }
 }

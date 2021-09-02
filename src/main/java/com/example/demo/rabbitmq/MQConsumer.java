@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 
-@Component
+//@Component
 public class MQConsumer {
     private static final Logger logger = LoggerFactory.getLogger(MQConsumer.class);
 

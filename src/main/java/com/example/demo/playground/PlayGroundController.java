@@ -34,4 +34,12 @@ public class PlayGroundController {
     public Boolean deleteTimer(@PathVariable String timerId) {
         return service.deleteTimer(timerId);
     }
+    @GetMapping("/pause")
+    public void pauseJob(){
+        service.pauseJob("HelloWorldJob");
+    }
+    @GetMapping("/resume")
+    public void resumeJob(){
+        service.resumeJob("HelloWorldJob");
+    }
 }

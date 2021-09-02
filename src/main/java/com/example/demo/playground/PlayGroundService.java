@@ -35,6 +35,11 @@ public class PlayGroundService {
     public Boolean deleteTimer(final String timerId) {
         return schedulerService.deleteTimer(timerId);
     }
-
+    public void pauseJob(String timerId){
+        schedulerService.pauseJob(timerId);
+    }
+    public void resumeJob(final String timerId){
+        schedulerService.resumeJob(timerId);
+    }
 
 }

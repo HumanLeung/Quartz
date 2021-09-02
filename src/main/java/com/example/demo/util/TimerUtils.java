@@ -20,8 +20,8 @@ public class TimerUtils {
     }
 
     public static Trigger buildTrigger(final Class jobClass, final Object info) {
-        SimpleScheduleBuilder builder = SimpleScheduleBuilder.simpleSchedule().withIntervalInMilliseconds(((TimerInfo)info).getRepeatIntervalMs());
-
+        SimpleScheduleBuilder builder = SimpleScheduleBuilder
+                .simpleSchedule().withIntervalInMilliseconds(((TimerInfo)info).getRepeatIntervalMs());
         if (((TimerInfo)info).isRunForever()) {
             builder = builder.repeatForever();
         } else {
@@ -33,6 +33,14 @@ public class TimerUtils {
                 .withIdentity(jobClass.getSimpleName())
                 .withSchedule(builder)
                 .startAt(new Date(System.currentTimeMillis() + ((TimerInfo)info).getInitialOffsetMs()))
+                .build();
+    }
+
+    public static Trigger buildCronTrigger(final Class jobClass, final Object info){
+        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("0/2 * * * * ? ");
+        return TriggerBuilder.newTrigger()
+                .withIdentity(jobClass.getSimpleName())
+                .withSchedule(cronScheduleBuilder)
                 .build();
     }
 }
